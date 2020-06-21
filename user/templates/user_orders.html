@@ -1,0 +1,67 @@
+{% extends 'homebase.html' %}
+{% load static %}
+
+{% block title %} Your orders {% endblock %}
+{% block description %} {{ setting.description }}{% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+{% block body %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Orders</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                     <div class="col-md-12">
+                            <div class="order-summary clearfix">
+                                <div class="section-title">
+                                    <h3 class="title">Orders List</h3>
+                                </div>
+                                <table class="shopping-cart-table table">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for rs in orders %}
+                                        <tr>
+                                            <td class="text-left">{{ rs.code }}</td>
+                                            <td class="text-left">{{ rs.first_name }} {{ rs.last_name }}</td>
+                                            <td class="text-left">{{ rs.phone }}</td>
+                                            <td class="text-center">{{ rs.total }}</td>
+                                            <td class="text-center">{{ rs.status }}</td>
+                                            <td class="text-center">{{ rs.create_at }}</td>
+                                            <td class="text-center"><a href="/user/orderdetail/{{ rs.id }}" class="primary-btn" >Detail</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+        </div>
+	<!-- /section -->
+{% endblock %}
+{% block foot %} {% include 'footer.html' %} {% endblock %}

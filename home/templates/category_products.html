@@ -1,0 +1,85 @@
+{% extends 'homebase.html' %}
+{% load static %}
+
+{% block title %} {{ setting.name }}{% endblock %}
+{% block description %} {{ setting.description }}{% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+{% block body %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Category</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+                        <div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">Products List</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th class="text-right"></th>
+                                        <th></th>
+										<th class="text-center">Price&nbsp;</th>
+										<th class="text-right"style="width: 17%" ></th>
+									</tr>
+								</thead>
+								<tbody>
+
+                                {% for rs in products %}
+									<tr>
+                                        <td class="thumb"><a href="/product/{{ rs.id }}/{{ rs.slug }}">
+                                            <img src="{{ rs.image.url}}" alt="" style="height: 100px; width: 140px"></a></td>
+										<td class="details"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.name }}</a><div>{{ rs.description }}</div></td>
+                                        <td>&nbsp;</td>
+										<td class="price text-center"><strong>{{ rs.price }}$&nbsp;</strong><br><del class="font-weak"><small></small></del></td>
+										<td class="text-right"><a href="/order/addtoshopcart/{{ rs.id }}" class="primary-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</a></td>
+									</tr>
+                                {% endfor %}
+
+
+                                </tbody>
+							</table>
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+            </div>
+        </div>
+    </div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+{% endblock %}
+{% block foot %} {% include 'footer.html' %} {% endblock %}
